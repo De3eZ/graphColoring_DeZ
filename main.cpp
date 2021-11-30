@@ -9,7 +9,7 @@ struct vertex
 	int color = 0;
 };
 
-void paint(int** graf,int size)
+void paint(int** graf, int size)
 {
 	vertex* arr = new vertex[size];
 
@@ -17,7 +17,7 @@ void paint(int** graf,int size)
 	{
 		arr[i].number = i;
 
-		for (int j=0; j < size; j++)
+		for (int j = 0; j < size; j++)
 		{
 			if (graf[i][j] != 0)
 			{
@@ -34,7 +34,7 @@ void paint(int** graf,int size)
 			if (arr[j].degree > maxDegree)
 			{
 				maxDegree = arr[j].degree;
-				
+
 				int tmpDegree = arr[j].degree;
 				int tmpNumber = arr[j].number;
 
@@ -48,10 +48,10 @@ void paint(int** graf,int size)
 	cout << "\nСтепени вершин:" << endl;
 	for (int i = 0; i < size; i++)
 	{
-		cout<< arr[i].number+1 << ": " << arr[i].degree << endl;
+		cout << arr[i].number + 1 << ": " << arr[i].degree << endl;
 	}
 
-	for (int i = 0,color=1; i < size; i++,color++)
+	for (int i = 0, color = 1; i < size; i++, color++)
 	{
 		for (int j = 0; j < size; j++)
 		{
@@ -80,7 +80,7 @@ void paint(int** graf,int size)
 					}
 				}
 			}
-			if (paint && arr[j].color==0)
+			if (paint && arr[j].color == 0)
 			{
 				arr[j].color = color;
 			}
@@ -101,6 +101,32 @@ void paint(int** graf,int size)
 		}
 
 		cout << tmp.number + 1 << ": Цвет " << tmp.color << endl;
+	}
+
+	int min = 5;
+	for (int i = 0; i < size; i++)
+	{
+		if (min > arr[i].degree)
+		{
+			min = arr[i].degree;
+		}
+	}
+
+	cout << endl << "Планарность:" << endl;
+	if (size >= 4 && min > 3 || size >= 5 && min > 2)
+	{
+		if ((size * (size - 1) / 2) <= (3 * size - 6))
+		{
+			cout << "Граф планарен" << endl;
+		}
+		else
+		{
+			cout << "Граф не планарен" << endl;
+		}
+	}
+	else
+	{
+		cout << "Граф планарен" << endl;
 	}
 }
 
@@ -148,7 +174,7 @@ int main()
 
 	system("cls");
 
-	cout << "Таблица смежности: " << endl;
+	cout << "Матрица смежности: " << endl;
 
 	for (int i = 0; i < size; i++)
 	{
