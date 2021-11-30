@@ -103,17 +103,21 @@ void paint(int** graf, int size)
 		cout << tmp.number + 1 << ": Цвет " << tmp.color << endl;
 	}
 
-	int min = 5;
+	int min = 0, min2 = 0;
 	for (int i = 0; i < size; i++)
 	{
-		if (min > arr[i].degree)
+		if (arr[i].degree > 3)
 		{
-			min = arr[i].degree;
+			min++;
+		}
+		if (arr[i].degree > 2)
+		{
+			min2++;
 		}
 	}
 
 	cout << endl << "Планарность:" << endl;
-	if (size >= 4 && min > 3 || size >= 5 && min > 2)
+	if (min>4|| min2 > 5)
 	{
 		if ((size * (size - 1) / 2) <= (3 * size - 6))
 		{
